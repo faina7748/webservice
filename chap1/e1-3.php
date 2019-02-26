@@ -6,5 +6,5 @@ $data = ["name" => "Lorna", "email" => "lorna@example.com"];
 $client = new \GuzzleHttp\Client();
 
 $result = $client->post($url, ["json" => $data]);
-echo $result->getBody();
+echo $result->getBody(); //
 //
