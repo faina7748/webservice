@@ -1,14 +1,16 @@
 <?php
 include 'db.php';
+//check jika client x hantar id, default to '0'
 
-$id = $_GET['id'];
+$id = isset($_GET['id']) ? $_GET['id'] : 0;
 $sql = "SELECT a.*, b.name FROM film a JOIN language b ON a.language_id = b.language_id WHERE a.film_id = $id";
 $rs = mysqli_query($con, $sql);
 
 if($rs){
     //ada data
     $rows = mysqli_fetch_array($rs);
-    if((!$rows) || count($rows) == 0){
+    //if((!$rows) || count($rows) == 0){
+    if(!$rows){
         // id tak wujud
         $data = new stdClass();
         $data->err = "No Record!";        
