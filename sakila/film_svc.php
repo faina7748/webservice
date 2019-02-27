@@ -13,17 +13,20 @@ if(! $con){
 }
 
 // query data
-$sql = "SELECT * FROM film LIMIT 0,20";
+$sql = "SELECT a.*, b.name FROM film a JOIN language b ON a.language_id = b.language_id LIMIT 0,20";
 $rs = mysqli_query($con, $sql);
+$arr = [];
 while($row = mysqli_fetch_array($rs)){
-    echo $row['title'] . "<br>";
-    $arr[] = $row['title'];
+    //echo $row['title'] . "<br>";
+    $obj = new stdClass();
+    $obj->title = $row['title'];
+    $obj->descr = $row['description'];
+    $obj->lang = $row['name'];
+    $arr[] = $obj;
 }
 
-echo '<hr>';
 // print data sbg JSON
-$data = json_encode($arr);
-var_dump($data);
-echo '<hr>';
-$data2 = json_decode($data);
-var_dump($data2);
+// {} / []
+$json = json_encode($arr);
+header('Content-Type: application/json');
+echo $json;
