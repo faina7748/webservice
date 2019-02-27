@@ -7,7 +7,7 @@ $user = 'root';
 $pwd = '';
 $db = 'sakila';
 $con = mysqli_connect($server, $user, $pwd, $db, 3308);
-if(! $con){
+if(! $con){ 
     echo "Connection Problem";
     exit;
 }
